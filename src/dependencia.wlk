@@ -43,6 +43,7 @@ class Dependencia {
 		}
 	
 	method colorDelRodadoMasRapido(){
+		
 		var rodadoMasRapido
 		rodadoMasRapido = flota.max({cosa => cosa.velocidad_maxima()})
 		return (rodadoMasRapido.color())

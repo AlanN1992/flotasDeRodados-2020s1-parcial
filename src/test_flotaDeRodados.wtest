@@ -28,7 +28,7 @@ cultura.setDependencia('cultura',31)
 primerKwidTanqueAdicional.tieneTanqueGas(true)
 segundoKwidTanqueAdicional.tieneTanqueGas(true)
 kwidSinTanqueAdicional.tieneTanqueGas(false)
-assert.that{cachito.capacidad() == 4}
+assert.equals(4,cachito.capacidad())
 }
 
 test "dependencia deportes agregar a Flota" {
@@ -39,46 +39,46 @@ test "dependencia deportes agregar a Flota" {
 	deportes.agregarAFlota(kwidTanqueAdicional)
 	deportes.agregarAFlota(autoEspecial)
 	
-	assert.that{ deportes.tamanioFlota() == 5}
+	assert.equals(5,deportes.tamanioFlota())
 	}
 
 test "dependencia deportes quitar de flota"{
 	
-	deportes.quitarDeFlota(autoEspecial)
+	deportes.quitarDeFlota(cachito)
 	
-	assert.that{ deportes.tamanioFlota() == 4}
+	assert.equals(4,deportes.tamanioFlota())
 	
-	deportes.agregarAFlota(autoEspecial)
+	deportes.agregarAFlota(cachito)
 	}
 	
 test "dependencia deportes peso total flota"{
 	
-	assert.that{deportes.pesoTotalFlota() == 6450}
+	assert.equals(6450,deportes.pesoTotalFlota())
 	}
 	
 test "dependencia deportes esta bien equipada"{	
 	
-	assert.that{deportes.estaBienequipada()}
+	assert.that(deportes.estaBienEquipada())
 	}
 	
 test "dependencia deportes capacidad total en color"{	
 	
-	assert.that{deportes.capacidadTotalEnColor('azul') == 7 }
+	assert.equals(7,deportes.capacidadTotalEnColor('azul'))
 	}
 	
 test "dependencia deportes color del rodado mas rapido"{	
 	
-	assert.that{deportes.colorDelRodadoMasRapido() == 'beige'}
+	assert.equals('beige',deportes.colorDelRodadoMasRapido())
 	}
 	
 test "dependencia deportes capacidad faltantes"{	
 	
-	assert.that{deportes.capacidadFaltante() == 25}
+	assert.equals(25,deportes.capacidadFaltante())
 	}
 	
 test "dependencia deportes es grande"{
 	
-	assert.that{deportes.esGrande()}
+	assert.that(deportes.esGrande())
 	}
 
 test "dependencia cultura agregar a flota" {
@@ -91,42 +91,42 @@ test "dependencia cultura agregar a flota" {
 	cultura.agregarAFlota(kwidSinTanqueAdicional)
 	cultura.agregarAFlota(trafic)
 	
-	assert.that{ cultura.tamanioFlota() == 5}
+	assert.equals(5, cultura.tamanioFlota())
 	}
 	
 test "dependencia cultura quitar de flota"{	
 	
 	cultura.quitarDeFlota(trafic)	
-	assert.that{ cultura.tamanioFlota() == 4}
+	assert.equals(4, cultura.tamanioFlota())
 	cultura.agregarAFlota(trafic)
 	}
 	
 test "dependencia cultura peso total flota"{	
 	
-	assert.that{cultura.pesoTotalFlota() == 10700}
+	assert.equals(10700,cultura.pesoTotalFlota())
 	}
 	
 test "dependencia cultura esta bien equipada"{	
 
-	assert.notThat{cultura.estaBienequipada()}
+	assert.notThat(cultura.estaBienEquipada())
 	}
 	
 test "dependencia cultura capacidad total en color"{	
 
-	assert.that{cultura.capacidadTotalEnColor('azul') == 10 }
+	assert.equals(10,cultura.capacidadTotalEnColor('azul'))
 	}
 	
 test "dependencia cultura color del rodado mas rapido"{	
 	
-	assert.that{cultura.colorDelRodadoMasRapido() == 'rojo'}
+	assert.equals('rojo',cultura.colorDelRodadoMasRapido())
 	}
 	
 test "dependencia cultura capacidad faltante"{	
 	
-	assert.that{cultura.capacidadFaltante() == 5}
+	assert.equals(5,cultura.capacidadFaltante())
 	}
 
 test "dependencia cultura es grande"{	
 	
-	assert.notThat{cultura.esGrande()}
+	assert.notThat(cultura.esGrande())
 	}
