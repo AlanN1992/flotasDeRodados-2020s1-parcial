@@ -1,0 +1,132 @@
+import trafic.*
+import otros_rodados.*
+import dependencia.*
+
+const deportes = new Dependencia()
+const cachito = new Corsa()
+const corsaAzul = new Corsa()
+const corsaVerde = new Corsa()
+const kwidTanqueAdicional = new RenaultKwid()
+const autoEspecial = new AutosEspeciales()
+const cultura = new Dependencia()
+const primerKwidTanqueAdicional = new RenaultKwid()
+const segundoKwidTanqueAdicional = new RenaultKwid()
+const kwidSinTanqueAdicional = new RenaultKwid()
+
+test "set dependencias y rodados"{
+
+deportes.setDependencia('deportes',45)
+cachito.setColor('rojo')
+corsaAzul.setColor('azul')
+corsaVerde.setColor('verde')
+kwidTanqueAdicional.tieneTanqueGas(true)
+autoEspecial.setCapacidad(5)
+autoEspecial.setVelocidad(160)
+autoEspecial.setColor('beige')
+autoEspecial.setPeso(1200)
+cultura.setDependencia('cultura',31)
+primerKwidTanqueAdicional.tieneTanqueGas(true)
+segundoKwidTanqueAdicional.tieneTanqueGas(true)
+kwidSinTanqueAdicional.tieneTanqueGas(false)
+assert.that{cachito.capacidad() == 4}
+}
+
+test "dependencia deportes agregar a Flota" {
+	
+	deportes.agregarAFlota(cachito)
+	deportes.agregarAFlota(corsaAzul)
+	deportes.agregarAFlota(corsaVerde)
+	deportes.agregarAFlota(kwidTanqueAdicional)
+	deportes.agregarAFlota(autoEspecial)
+	
+	assert.that{ deportes.tamanioFlota() == 5}
+	}
+
+test "dependencia deportes quitar de flota"{
+	
+	deportes.quitarDeFlota(autoEspecial)
+	
+	assert.that{ deportes.tamanioFlota() == 4}
+	
+	deportes.agregarAFlota(autoEspecial)
+	}
+	
+test "dependencia deportes peso total flota"{
+	
+	assert.that{deportes.pesoTotalFlota() == 6450}
+	}
+	
+test "dependencia deportes esta bien equipada"{	
+	
+	assert.that{deportes.estaBienequipada()}
+	}
+	
+test "dependencia deportes capacidad total en color"{	
+	
+	assert.that{deportes.capacidadTotalEnColor('azul') == 7 }
+	}
+	
+test "dependencia deportes color del rodado mas rapido"{	
+	
+	assert.that{deportes.colorDelRodadoMasRapido() == 'beige'}
+	}
+	
+test "dependencia deportes capacidad faltantes"{	
+	
+	assert.that{deportes.capacidadFaltante() == 25}
+	}
+	
+test "dependencia deportes es grande"{
+	
+	assert.that{deportes.esGrande()}
+	}
+
+test "dependencia cultura agregar a flota" {
+	
+	trafic.setInterior('popular')
+	trafic.setMotor('baraton')	
+	cultura.agregarAFlota(cachito)
+	cultura.agregarAFlota(primerKwidTanqueAdicional)
+	cultura.agregarAFlota(segundoKwidTanqueAdicional)
+	cultura.agregarAFlota(kwidSinTanqueAdicional)
+	cultura.agregarAFlota(trafic)
+	
+	assert.that{ cultura.tamanioFlota() == 5}
+	}
+	
+test "dependencia cultura quitar de flota"{	
+	
+	cultura.quitarDeFlota(trafic)	
+	assert.that{ cultura.tamanioFlota() == 4}
+	cultura.agregarAFlota(trafic)
+	}
+	
+test "dependencia cultura peso total flota"{	
+	
+	assert.that{cultura.pesoTotalFlota() == 10700}
+	}
+	
+test "dependencia cultura esta bien equipada"{	
+
+	assert.notThat{cultura.estaBienequipada()}
+	}
+	
+test "dependencia cultura capacidad total en color"{	
+
+	assert.that{cultura.capacidadTotalEnColor('azul') == 10 }
+	}
+	
+test "dependencia cultura color del rodado mas rapido"{	
+	
+	assert.that{cultura.colorDelRodadoMasRapido() == 'rojo'}
+	}
+	
+test "dependencia cultura capacidad faltante"{	
+	
+	assert.that{cultura.capacidadFaltante() == 5}
+	}
+
+test "dependencia cultura es grande"{	
+	
+	assert.notThat{cultura.esGrande()}
+	}
